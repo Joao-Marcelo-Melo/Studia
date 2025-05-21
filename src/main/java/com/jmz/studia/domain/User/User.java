@@ -17,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "users")
 @Entity
+@Builder
 @EqualsAndHashCode(of = "id")
 public class User implements UserDetails {
 

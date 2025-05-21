@@ -1,0 +1,8 @@
+CREATE TABLE users (
+    id UUID PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    role VARCHAR(20) CHECK ( ROLE IN ('LAWYER', 'ASSISTANT', 'CLIENT', 'ADMIN')),
+    created_at TIMESTAMP DEFAULT NOW()
+)

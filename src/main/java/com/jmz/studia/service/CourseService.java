@@ -1,0 +1,52 @@
+package com.jmz.studia.service;
+
+
+import com.jmz.studia.domain.User.User;
+import com.jmz.studia.domain.course.Course;
+import com.jmz.studia.domain.course.CourseRequestDTO;
+import com.jmz.studia.infra.security.TokenService;
+import com.jmz.studia.repositories.CoursesRepository;
+import com.jmz.studia.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+@Service
+public class CourseService {
+
+    private final CoursesRepository coursesRepository;
+    private final UserRepository userRepository;
+    private final TokenService tokenService;
+
+    @Autowired
+    public CourseService(CoursesRepository coursesRepository, UserRepository userRepository, TokenService tokenService) {
+        this.coursesRepository = coursesRepository;
+        this.userRepository = userRepository;
+        this.tokenService = tokenService;
+    }
+
+    public Course createCourse(CourseRequestDTO data, String token) {
+        token = this.tokenService.formatToken(token);
+        String email = this.tokenService.findUserByToken(token);
+        if (email == null) throw new EntityNotFoundException("Not found email"); // TODO melhorar tratamento de erro
+        User user = (User) this.userRepository.findByEmail(email);
+
+        Course course = Course.builder()
+        .title(data.title())
+        .description(data.description())
+        .price(data.price())
+        .is_published(data.is_published())
+        .instructor_id(user)
+        .build();
+
+        this.coursesRepository.save(course);
+        return course;
+    }
+
+    public List<Course> getALlCourses() {
+        return this.coursesRepository.findAll();
+    }
+}

@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -28,6 +27,7 @@ public class CourseController {
         return ResponseEntity.ok(new CourseResponseDTO(
             course.getId(),
             course.getTitle(),
+            course.getDescription(),
             course.getInstructor_id().getId(),
             course.getPrice(),
             course.getIs_published()
@@ -35,19 +35,10 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CourseResponseDTO>> getAllCourses() {
-        List<Course> courses = this.courseService.getALlCourses();
-
-        List<CourseResponseDTO> response = courses.stream()
-            .map(course -> new CourseResponseDTO(
-                    course.getId(),
-                    course.getTitle(),
-                    course.getInstructor_id().getId(),
-                    course.getPrice(),
-                    course.getIs_published()
-            ))
-            .collect(Collectors.toList());
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<List<CourseResponseDTO>> getAllCourses(@RequestParam(defaultValue = "true") boolean is_published,
+     @RequestParam(defaultValue = "0") int page,
+     @RequestParam(defaultValue = "10") int size) {
+        List<CourseResponseDTO> courses = this.courseService.getCourses(is_published, page, size);
+        return ResponseEntity.ok(courses);
     }
 }

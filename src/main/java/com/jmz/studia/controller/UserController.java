@@ -1,6 +1,7 @@
 package com.jmz.studia.controller;
 
 import com.jmz.studia.domain.User.User;
+import com.jmz.studia.domain.User.UserRequestDTO;
 import com.jmz.studia.domain.User.UserResponseDTO;
 import com.jmz.studia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,11 @@ public class UserController {
         User user = this.userService.getUser(id);
         UserResponseDTO response = new UserResponseDTO(user);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO body) {
+        User newUser = this.userService.createUser(body);
+        return ResponseEntity.ok(new UserResponseDTO(newUser));
     }
 }

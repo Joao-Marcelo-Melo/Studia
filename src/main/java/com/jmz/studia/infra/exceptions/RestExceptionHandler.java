@@ -1,6 +1,7 @@
 package com.jmz.studia.infra.exceptions;
 
 import com.jmz.studia.errors.CourseNotFoundException;
+import com.jmz.studia.errors.ModuleNotFoundException;
 import com.jmz.studia.errors.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({CourseNotFoundException.class})
     private ResponseEntity<RestErrorMessage> courseNotFoundHandler(CourseNotFoundException exception) {
+        RestErrorMessage restErrorMessage = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErrorMessage);
+    }
+
+    @ExceptionHandler({ModuleNotFoundException.class})
+    private ResponseEntity<RestErrorMessage> moduleNotFoundHandler(ModuleNotFoundException exception) {
         RestErrorMessage restErrorMessage = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restErrorMessage);
     }

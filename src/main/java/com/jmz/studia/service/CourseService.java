@@ -4,7 +4,6 @@ package com.jmz.studia.service;
 import com.jmz.studia.domain.User.User;
 import com.jmz.studia.domain.course.Course;
 import com.jmz.studia.domain.course.CourseRequestDTO;
-import com.jmz.studia.errors.UserNotFoundException;
 import com.jmz.studia.infra.security.TokenService;
 import com.jmz.studia.repositories.CoursesRepository;
 import com.jmz.studia.repositories.UserRepository;

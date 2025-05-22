@@ -24,7 +24,8 @@ public class TokenService {
     public String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create()
+            String token;
+            token = JWT.create()
                     .withIssuer("api")
                     .withSubject(user.getEmail())
                     .withExpiresAt(genExpireTime())

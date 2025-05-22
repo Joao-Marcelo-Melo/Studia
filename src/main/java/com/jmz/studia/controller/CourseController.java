@@ -3,7 +3,6 @@ package com.jmz.studia.controller;
 import com.jmz.studia.domain.course.Course;
 import com.jmz.studia.domain.course.CourseRequestDTO;
 import com.jmz.studia.domain.course.CourseResponseDTO;
-import com.jmz.studia.infra.security.TokenService;
 import com.jmz.studia.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

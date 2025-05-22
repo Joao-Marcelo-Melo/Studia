@@ -1,7 +1,6 @@
 package com.jmz.studia.controller;
 
 import com.jmz.studia.domain.User.User;
-import com.jmz.studia.domain.User.UserRequestDTO;
 import com.jmz.studia.domain.User.UserResponseDTO;
 import com.jmz.studia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

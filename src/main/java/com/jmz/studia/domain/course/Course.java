@@ -2,9 +2,9 @@ package com.jmz.studia.domain.course;
 
 import com.jmz.studia.domain.User.User;
 import jakarta.persistence.*;
-import lombok.*;
+        import lombok.*;
 
-import java.util.UUID;
+        import java.util.UUID;
 
 @Getter
 @Setter

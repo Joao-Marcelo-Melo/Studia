@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.jmz.studia.domain.User.User;
+import com.jmz.studia.errors.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -49,13 +50,13 @@ public class TokenService {
 
     public String findUserByToken(String token) {
         try {
-            if (token == null || token.isEmpty()) return null;
+            if (token == null || token.isEmpty()) throw new UserNotFoundException("token is empty");
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
             return jwt.getSubject();
         } catch (JWTVerificationException e) {
-            throw new RuntimeException("JWT verification failed", e);
+            throw new UserNotFoundException("JWT verification failed:" + e.getMessage());
         }
     }
 

@@ -4,10 +4,10 @@ package com.jmz.studia.service;
 import com.jmz.studia.domain.User.User;
 import com.jmz.studia.domain.course.Course;
 import com.jmz.studia.domain.course.CourseRequestDTO;
+import com.jmz.studia.errors.UserNotFoundException;
 import com.jmz.studia.infra.security.TokenService;
 import com.jmz.studia.repositories.CoursesRepository;
 import com.jmz.studia.repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,6 @@ public class CourseService {
     public Course createCourse(CourseRequestDTO data, String token) {
         token = this.tokenService.formatToken(token);
         String email = this.tokenService.findUserByToken(token);
-        if (email == null) throw new EntityNotFoundException("Not found email"); // TODO melhorar tratamento de erro
         User user = (User) this.userRepository.findByEmail(email);
 
         Course course = Course.builder()

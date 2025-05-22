@@ -19,7 +19,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @Autowired
-    public CourseController(CourseService courseService, TokenService tokenService) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 

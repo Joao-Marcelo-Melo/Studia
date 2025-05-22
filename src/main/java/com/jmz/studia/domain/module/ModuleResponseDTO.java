@@ -1,4 +1,4 @@
-package com.jmz.studia.domain.modules;
+package com.jmz.studia.domain.module;
 
 import java.util.UUID;
 

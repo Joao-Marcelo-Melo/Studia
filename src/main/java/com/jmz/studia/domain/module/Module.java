@@ -1,4 +1,4 @@
-package com.jmz.studia.domain.modules;
+package com.jmz.studia.domain.module;
 
 
 import com.jmz.studia.domain.course.Course;

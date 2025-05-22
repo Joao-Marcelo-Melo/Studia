@@ -1,8 +1,8 @@
 package com.jmz.studia.controller;
 
 
-import com.jmz.studia.domain.modules.ModuleRequestDTO;
-import com.jmz.studia.domain.modules.ModuleResponseDTO;
+import com.jmz.studia.domain.module.ModuleRequestDTO;
+import com.jmz.studia.domain.module.ModuleResponseDTO;
 import com.jmz.studia.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

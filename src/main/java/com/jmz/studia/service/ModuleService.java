@@ -1,9 +1,9 @@
 package com.jmz.studia.service;
 
 import com.jmz.studia.domain.course.Course;
-import com.jmz.studia.domain.modules.ModuleRequestDTO;
-import com.jmz.studia.domain.modules.ModuleResponseDTO;
-import com.jmz.studia.domain.modules.Module;
+import com.jmz.studia.domain.module.ModuleRequestDTO;
+import com.jmz.studia.domain.module.ModuleResponseDTO;
+import com.jmz.studia.domain.module.Module;
 import com.jmz.studia.errors.CourseNotFoundException;
 import com.jmz.studia.repositories.CoursesRepository;
 import com.jmz.studia.repositories.ModuleRepository;
